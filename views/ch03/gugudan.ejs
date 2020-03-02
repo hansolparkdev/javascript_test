@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구구단</title>
+</head>
+<body>
+  <h2>구구단</h2>
+  <script>
+    let value1 = Math.ceil(Math.random() * 9);
+    let value2 = Math.ceil(Math.random() * 9);
+    let result = value1 * value2;
+
+    var body = document.body;
+    var question = document.createElement('div');
+    question.textContent = `${value1} 곱하기 ${value2}는`
+    body.append(question);
+    var form = document.createElement('form');
+    body.append(form);
+    var input = document.createElement('input');
+    form.append(input);
+    var button = document.createElement('button');
+    button.textContent = '입력'
+    form.append(button);
+    var resultForm = document.createElement('div');
+    body.append(resultForm)
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault()
+      if(result === parseInt(input.value)){
+        resultForm.textContent = '딩동댕';
+        value1 = Math.ceil(Math.random() * 9);
+        value2 = Math.ceil(Math.random() * 9);
+        result = value1 * value2
+        question.textContent = `${value1} 곱하기 ${value2}는`
+      }else{
+        resultForm.textContent= '땡';
+      }
+      input.value = ""
+      input.focus()
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TicTacToe</title>
+  <style>
+    table{
+      border:1px solid black;
+      border-collapse: collapse;
+    }
+    table tr td {
+      border: 1px solid black;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-weight: 700;
+      font-size: 40px;
+    }
+  </style>
+</head>
+<body>
+  <h2>TicTacToe</h2>
+  <script>
+    var body = document.body;
+    var table = document.createElement('table');
+    var tr_array = []
+    var td_array = []
+    var turn = 'X';
+
+    var callbackFunction = (e) => {
+      var rowIndex = tr_array.indexOf(e.target.parentNode);
+      var cellIndex = td_array[rowIndex].indexOf(e.target)
+      // console.log(rowIndex, cellIndex)
+
+      if( td_array[rowIndex][cellIndex].textContent !== "") { //칸이 채워져있는가?
+        
+      } else{
+        td_array[rowIndex][cellIndex].textContent = turn;
+        var result = false;
+        //가로줄 검사
+        if(td_array[rowIndex][0].textContent === turn && td_array[rowIndex][1].textContent === turn && td_array[rowIndex][2].textContent === turn ){
+          result = true
+        }
+
+        // 세로줄 검사
+        if(td_array[0][cellIndex].textContent === turn && td_array[1][cellIndex].textContent === turn && td_array[2][cellIndex].textContent === turn ) {
+          result = true
+        }
+
+        if (td_array[0][0].textContent === turn && td_array[1][1].textContent === turn && td_array[2][2].textContent === turn) {
+          result = true;
+        }
+
+        if (td_array[0][2].textContent === turn && td_array[1][1].textContent === turn && td_array[2][0].textContent === turn) {
+          result = true;
+        }
+
+        if(result){
+          console.log(turn + '님이 승리')
+          td_array.forEach((tr)=>{
+              tr.forEach((td)=>{
+                  td.textContent = '';
+              })
+          });
+        }else {
+          turn === 'X' ? turn = 'O' : turn = 'X' 
+        }
+      }
+    }
+
+    for(var i = 0; i<3; i += 1) {
+      var tr = document.createElement('tr')
+      tr_array.push(tr)
+      td_array.push([]);
+      for(var j = 0; j <3; j += 1){
+        var td = document.createElement('td')
+        td.addEventListener('click', callbackFunction);
+        td_array[i].push(td);
+        tr.appendChild(td);
+      }
+      table.appendChild(tr)
+    }
+    console.log(tr_array)
+    console.log(td_array)
+    body.append(table)    
+  </script>
+</body>
+</html>
