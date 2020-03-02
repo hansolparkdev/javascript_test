@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별찍기</title>
+</head>
+<body>
+    <h2>별찍기</h2>
+    <script>
+        var array = [];
+        for (var i = 1; i <= 5; i++) {
+            // console.log('*'.repeat(i))
+            for(j=1; j <= i; j++){
+                array.push("*");
+            }
+            console.log(array.toString().split(',').join(''));
+            array=[];
+        }
+
+        for (var i = 9; i >= 1; i -= 2) {
+            console.log(' '.repeat((9 - i) / 2) + '*'.repeat(i))
+        }
+    </script>
+</body>
+</html>
